@@ -23,6 +23,32 @@ public class Contact
         _birthday = DateOnly.Parse(newInfo[3]);
         _street = newInfo[4];
         _city = newInfo[5];
+        
+    }
+    public string GetProperty(Phonebook.Field field)
+    {
+        string property;
+        switch (field)
+        {
+            case Phonebook.Field.FirstName:
+                property = _firstname;
+                break;
+            case Phonebook.Field.LastName:
+                property = _lastname;
+                break;
+            case Phonebook.Field.Mobile:
+                property = _mobile;
+                break;
+            default:
+                property = "";
+                break;
+        }
+
+        return property;
     }
 
+    public override string ToString()
+    {
+        return $"{_firstname}, {_lastname}, {_mobile}, {_birthday}, {_street}, {_city}";
+    }
 }
