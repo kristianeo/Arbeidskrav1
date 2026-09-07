@@ -47,5 +47,8 @@ public class Contact
         return property;
     }
 
-    
+    public override string ToString()
+    {
+        return $"{_firstname}, {_lastname}, {_mobile}, {_birthday}, {_street}, {_city}";
+    }
 }
