@@ -27,6 +27,7 @@ public class Phonebook
     }
     public Contact[] LinearSearch(Field field, string target)
     {
+        Console.WriteLine($"Searching for: {target} in {field}");
         _searchResults = [];
         for (int i = 0; i < _contacts.Length; i++)
         {
@@ -36,7 +37,6 @@ public class Phonebook
                 _searchResults.Add(_contacts[i]);
             }
         }
-
         return _searchResults.ToArray();
     }
 
