@@ -22,6 +22,9 @@ class Program
 
         Console.WriteLine($"Comparisons: {phonebook.Comparisons()}");
         
+        phonebook.InsertionSort(Phonebook.Field.FirstName);
+        Console.WriteLine(phonebook.Comparisons());
+        
         
     }
 }
