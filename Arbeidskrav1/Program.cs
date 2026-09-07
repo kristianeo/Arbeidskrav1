@@ -11,5 +11,9 @@ class Program
         var lines = File.ReadAllLines(phonebookCsv);
 
         Phonebook phonebook = new Phonebook(lines);
+
+        var result = phonebook.LinearSearch(Phonebook.Field.FirstName, "Ola");
+
+        Console.WriteLine(result.Length);
     }
 }
