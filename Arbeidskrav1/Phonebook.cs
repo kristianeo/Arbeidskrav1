@@ -101,29 +101,39 @@ public class Phonebook
         }
     }
 
-    public void HeapSort(Field field)
+    public void HeapSort(Field field, SortOrder order)
     {
         
-    }
-
-    public void ConstructMaxHeap(Field field, SortOrder order)
-    {
         for (int i = (_contacts.Length - 1) / 2; i >= 0; i--)
         {
-            MaxHeapify(field, order, i);
+            MaxHeapify(field, order, _contacts.Length, i);
+        }
+        
+        for (int i = _contacts.Length - 1; i >= 1; i--)
+        {
+            (_contacts[i], _contacts[0]) = (_contacts[0], _contacts[i]);
+            MaxHeapify(field, order, i, 0);
         }
     }
 
-    private void MaxHeapify(Field field, SortOrder order, int i)
+    public void ConstructMaxHeap(Field field, SortOrder order, int lenght)
     {
-        if (i > (_contacts.Length - 1) / 2) return;
+        for (int i = (lenght - 1) / 2; i >= 0; i--)
+        {
+            MaxHeapify(field, order, lenght, i);
+        }
+    }
+
+    private void MaxHeapify(Field field, SortOrder order, int length, int i)
+    {
+        if (i > (length - 1) / 2) return;
         
         int current = i;
         int leftChild = 2 * i + 1;
         int rightChild = 2 * i + 2; 
         int biggestChild;
 
-        if (rightChild > _contacts.Length - 1 || FindOrder(_contacts[leftChild].GetProperty(field),
+        if (rightChild > length - 1 || FindOrder(_contacts[leftChild].GetProperty(field),
                 _contacts[rightChild].GetProperty(field),order))
         {
             biggestChild = leftChild;
@@ -136,7 +146,7 @@ public class Phonebook
                 _contacts[current].GetProperty(field), order))
         {
             (_contacts[current], _contacts[biggestChild]) = (_contacts[biggestChild], _contacts[current]);
-            MaxHeapify(field, order, biggestChild);
+            MaxHeapify(field, order, length, biggestChild);
         }
     }
 
