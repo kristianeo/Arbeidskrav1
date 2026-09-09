@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace Arbeidskrav1;
 
 public class Phonebook
@@ -86,7 +88,7 @@ public class Phonebook
             while (j >= 0 && _contacts[j] != null)
             {
                 _comparisons++;
-                if (Order(_contacts[j].GetProperty(field), current, order))
+                if (FindOrder(_contacts[j].GetProperty(field), current, order))
                 {
                     _moves++;
                     _contacts[j + 1] = _contacts[j];
@@ -99,7 +101,46 @@ public class Phonebook
         }
     }
 
-    private bool Order(string property, string current, SortOrder order)
+    public void HeapSort(Field field)
+    {
+        
+    }
+
+    public void ConstructMaxHeap(Field field, SortOrder order)
+    {
+        for (int i = (_contacts.Length - 1) / 2; i >= 0; i--)
+        {
+            MaxHeapify(field, order, i);
+        }
+    }
+
+    private void MaxHeapify(Field field, SortOrder order, int i)
+    {
+        if (i > (_contacts.Length - 1) / 2) return;
+        
+        int current = i;
+        int leftChild = 2 * i + 1;
+        int rightChild = 2 * i + 2; 
+        int biggestChild;
+
+        if (rightChild > _contacts.Length - 1 || FindOrder(_contacts[leftChild].GetProperty(field),
+                _contacts[rightChild].GetProperty(field),order))
+        {
+            biggestChild = leftChild;
+        }
+
+        else biggestChild = rightChild;
+        
+        
+        if (FindOrder(_contacts[biggestChild].GetProperty(field), 
+                _contacts[current].GetProperty(field), order))
+        {
+            (_contacts[current], _contacts[biggestChild]) = (_contacts[biggestChild], _contacts[current]);
+            MaxHeapify(field, order, biggestChild);
+        }
+    }
+
+    private bool FindOrder(string property, string current, SortOrder order)
     {
         switch (order)
         {
