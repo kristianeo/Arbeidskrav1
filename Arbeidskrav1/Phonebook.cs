@@ -70,7 +70,7 @@ public class Phonebook
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
 
-            while (j >= 0)
+            while (j >= 0 && _contacts[j] != null)
             {
                 _comparisons++;
                 if (Order(_contacts[j].GetProperty(field), current, order))
