@@ -53,12 +53,6 @@ public class Phonebook
 
     public void InsertionSort(Field field, SortOrder order)
     {
-        if (order == SortOrder.Ascending) InsertionSortAscending(field);
-        else InsertionSortDescending(field);
-    }
-
-    public void InsertionSortAscending(Field field)
-    {
         _comparisons = 0;
         for (int i = 1; i < _contacts.Length; i++)
         {
@@ -67,14 +61,14 @@ public class Phonebook
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
 
-            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current,
-                       StringComparison.OrdinalIgnoreCase) > 0)
+            while (j >= 0 && Order(_contacts[j].GetProperty(field), current, order))
             {
                 _comparisons++;
                 _contacts[j + 1] = _contacts[j];
                 j--;
             }
 
+            _swaps++;
             _contacts[j + 1] = insert;
         }
 
@@ -84,27 +78,17 @@ public class Phonebook
         }
     }
 
-    public void InsertionSortDescending(Field field)
+    private bool Order(string property, string current, SortOrder order)
     {
-        _comparisons = 0;
-        for (int i = 1; i < _contacts.Length; i++)
+        switch (order)
         {
-            if (_contacts[i] == null) continue;
-            int j = i - 1;
-            var current = _contacts[i].GetProperty(field);
-            var insert = _contacts[i];
-            
-            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current,StringComparison.OrdinalIgnoreCase) < 0)
-            {
-                _comparisons++;
-                _contacts[j + 1] = _contacts[j];
-                j--;
-            }
-            _contacts[j + 1] = insert;
-        }
-        foreach (Contact contact in _contacts)
-        {
-            Console.WriteLine(contact.ToString());
+            case SortOrder.Ascending when string.Compare(property, current,
+                StringComparison.OrdinalIgnoreCase) > 0:
+            case SortOrder.Descending when string.Compare(property, current,
+                StringComparison.OrdinalIgnoreCase) < 0:
+                return true;
+            default:
+                return false;
         }
     }
     
