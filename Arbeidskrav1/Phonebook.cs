@@ -46,15 +46,22 @@ public class Phonebook
         return _searchResults.ToArray();
     }
 
-    public void InsertionSort(Field field)
+    public void InsertionSort(Field field, SortOrder order)
+    {
+        if (order == SortOrder.Ascending) InsertionSortAscending(field);
+        else InsertionSortDescending(field);
+    }
+
+    public void InsertionSortAscending(Field field)
     {
         _comparisons = 0;
         for (int i = 1; i < _contacts.Length; i++)
         {
+            int j = i - 1;
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
-            int j = i - 1;
-            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current,StringComparison.OrdinalIgnoreCase) > 0)
+            
+            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current, StringComparison.OrdinalIgnoreCase) > 0)
             {
                 _comparisons++;
                 _contacts[j + 1] = _contacts[j];
@@ -67,10 +74,30 @@ public class Phonebook
         {
             Console.WriteLine(contact.ToString());
         }
-
-        
-
     }
 
+    public void InsertionSortDescending(Field field)
+    {
+        _comparisons = 0;
+        for (int i = 1; i < _contacts.Length; i++)
+        {
+            int j = i - 1;
+            var current = _contacts[i].GetProperty(field);
+            var insert = _contacts[i];
+            
+            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current,StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                _comparisons++;
+                _contacts[j + 1] = _contacts[j];
+                j--;
+            }
+            _contacts[j + 1] = insert;
+        }
 
+        foreach (var contact in _contacts)
+        {
+            Console.WriteLine(contact.ToString());
+        }
+    }
+    
 }

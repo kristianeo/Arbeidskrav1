@@ -21,8 +21,12 @@ class Program
         else Console.WriteLine("No results found...");
 
         Console.WriteLine($"Comparisons: {phonebook.Comparisons()}");
+        Console.WriteLine();
         
-        phonebook.InsertionSort(Phonebook.Field.FirstName);
+        phonebook.InsertionSort(Phonebook.Field.FirstName, Phonebook.SortOrder.Descending);
+        Console.WriteLine(phonebook.Comparisons());
+        Console.WriteLine();
+        phonebook.InsertionSort(Phonebook.Field.FirstName, Phonebook.SortOrder.Ascending);
         Console.WriteLine(phonebook.Comparisons());
         
         
