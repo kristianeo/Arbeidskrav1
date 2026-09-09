@@ -8,6 +8,8 @@ public class Phonebook
 
     private int _comparisons;
 
+    private int _moves;
+
     public enum Field
     {
         FirstName,
@@ -35,6 +37,11 @@ public class Phonebook
     {
         return _contacts;
     }
+
+    public int Moves()
+    {
+        return _moves;
+    }
     
     public Contact[] LinearSearch(Field field, string target)
     {
@@ -54,6 +61,8 @@ public class Phonebook
     public void InsertionSort(Field field, SortOrder order)
     {
         _comparisons = 0;
+        _moves = 0;
+        
         for (int i = 1; i < _contacts.Length; i++)
         {
             if (_contacts[i] == null) continue;
@@ -61,20 +70,19 @@ public class Phonebook
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
 
-            while (j >= 0 && Order(_contacts[j].GetProperty(field), current, order))
+            while (j >= 0)
             {
                 _comparisons++;
-                _contacts[j + 1] = _contacts[j];
-                j--;
+                if (Order(_contacts[j].GetProperty(field), current, order))
+                {
+                    _moves++;
+                    _contacts[j + 1] = _contacts[j];
+                    j--;
+                }
+                else break;
             }
-
-            _swaps++;
+            
             _contacts[j + 1] = insert;
-        }
-
-        foreach (Contact contact in _contacts)
-        {
-            Console.WriteLine(contact.ToString());
         }
     }
 
