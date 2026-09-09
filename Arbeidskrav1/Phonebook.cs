@@ -30,6 +30,11 @@ public class Phonebook
     {
         return _comparisons;
     }
+
+    public Contact[] Contacts()
+    {
+        return _contacts;
+    }
     
     public Contact[] LinearSearch(Field field, string target)
     {
@@ -57,20 +62,23 @@ public class Phonebook
         _comparisons = 0;
         for (int i = 1; i < _contacts.Length; i++)
         {
+            if (_contacts[i] == null) continue;
             int j = i - 1;
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
-            
-            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current, StringComparison.OrdinalIgnoreCase) > 0)
+
+            while (j >= 0 && string.Compare(_contacts[j].GetProperty(field), current,
+                       StringComparison.OrdinalIgnoreCase) > 0)
             {
                 _comparisons++;
                 _contacts[j + 1] = _contacts[j];
                 j--;
             }
+
             _contacts[j + 1] = insert;
         }
 
-        foreach (var contact in _contacts)
+        foreach (Contact contact in _contacts)
         {
             Console.WriteLine(contact.ToString());
         }
@@ -81,6 +89,7 @@ public class Phonebook
         _comparisons = 0;
         for (int i = 1; i < _contacts.Length; i++)
         {
+            if (_contacts[i] == null) continue;
             int j = i - 1;
             var current = _contacts[i].GetProperty(field);
             var insert = _contacts[i];
@@ -93,8 +102,7 @@ public class Phonebook
             }
             _contacts[j + 1] = insert;
         }
-
-        foreach (var contact in _contacts)
+        foreach (Contact contact in _contacts)
         {
             Console.WriteLine(contact.ToString());
         }
