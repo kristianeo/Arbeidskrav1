@@ -8,6 +8,8 @@ public class Phonebook
 
     private int _comparisons;
 
+    private int _moves;
+
     public enum Field
     {
         FirstName,
@@ -25,6 +27,22 @@ public class Phonebook
             _contacts[i - 1] = contact;
         }
     }
+    
+    public int Comparisons()
+    {
+        return _comparisons;
+    }
+
+    public Contact[] Contacts()
+    {
+        return _contacts;
+    }
+
+    public int Moves()
+    {
+        return _moves;
+    }
+    
     public Contact[] LinearSearch(Field field, string target)
     {
         Console.WriteLine($"Searching for: {target} in {field}");
@@ -40,9 +58,46 @@ public class Phonebook
         return _searchResults.ToArray();
     }
 
-    public int Comparisons()
+    public void InsertionSort(Field field, SortOrder order)
     {
-        return _comparisons;
+        _comparisons = 0;
+        _moves = 0;
+        
+        for (int i = 1; i < _contacts.Length; i++)
+        {
+            if (_contacts[i] == null) continue;
+            int j = i - 1;
+            var current = _contacts[i].GetProperty(field);
+            var insert = _contacts[i];
+
+            while (j >= 0 && _contacts[j] != null)
+            {
+                _comparisons++;
+                if (Order(_contacts[j].GetProperty(field), current, order))
+                {
+                    _moves++;
+                    _contacts[j + 1] = _contacts[j];
+                    j--;
+                }
+                else break;
+            }
+            
+            _contacts[j + 1] = insert;
+        }
     }
 
+    private bool Order(string property, string current, SortOrder order)
+    {
+        switch (order)
+        {
+            case SortOrder.Ascending when string.Compare(property, current,
+                StringComparison.OrdinalIgnoreCase) > 0:
+            case SortOrder.Descending when string.Compare(property, current,
+                StringComparison.OrdinalIgnoreCase) < 0:
+                return true;
+            default:
+                return false;
+        }
+    }
+    
 }

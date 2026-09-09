@@ -68,3 +68,5 @@ itself?]
 **One paragraph.** [What is the single most useful thing these figures taught you
 about choosing an algorithm? Write about something your own numbers show, not
 something you read.]
+
+Sources: https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
