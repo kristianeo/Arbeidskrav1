@@ -38,6 +38,18 @@ public class Phonebook
                 _searchResults.Add(_contacts[i]);
             }
         }
+
+        if (_searchResults.Count == 0)
+        {
+            Console.WriteLine("No results found...");
+            return _searchResults.ToArray();
+        }
+        
+        foreach (var contact in _searchResults)
+        {
+            Console.WriteLine(contact.ToString());
+        }
+
         return _searchResults.ToArray();
     }
 
