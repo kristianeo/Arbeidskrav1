@@ -29,10 +29,11 @@ public class Phonebook
     {
         Console.WriteLine($"Searching for: {target} in {field}");
         _searchResults = [];
+        
         for (int i = 0; i < _contacts.Length; i++)
         {
             _comparisons++;
-            if (string.Compare(_contacts[i].GetProperty(field), target, StringComparison.OrdinalIgnoreCase) == 0)
+            if (_contacts[i] != null && string.Compare(_contacts[i].GetProperty(field), target, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _searchResults.Add(_contacts[i]);
             }
