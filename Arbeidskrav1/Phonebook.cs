@@ -156,6 +156,19 @@ public class Phonebook
         }
     }
 
+    public int BinarySearch(Field field, string target)
+    {
+        for (int i = 0; i < _contacts.Length - 1; i++)
+        {
+            if (string.Compare(_contacts[i].GetProperty(field), target, 
+                    StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private bool FindOrder(string property, string current, SortOrder order)
     {
         switch (order)
