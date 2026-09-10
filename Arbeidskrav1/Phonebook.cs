@@ -158,14 +158,25 @@ public class Phonebook
 
     public int BinarySearch(Field field, string target)
     {
-        for (int i = 0; i < _contacts.Length - 1; i++)
+        int high = _contacts.Length - 1;
+        int low = 0;
+
+        while (low < high)
         {
-            if (string.Compare(_contacts[i].GetProperty(field), target, 
-                    StringComparison.OrdinalIgnoreCase) == 0)
+            int mid = (low + high) / 2;
+            if (FindOrder(_contacts[mid].GetProperty(field), target, SortOrder.Ascending))
             {
-                return i;
+                high = mid;
             }
+            else low = mid + 1;
         }
+
+        if (String.Compare(target, _contacts[high - 1].GetProperty(field),
+                StringComparison.OrdinalIgnoreCase) == 0)
+        {
+            return high;
+        }
+
         return -1;
     }
 
