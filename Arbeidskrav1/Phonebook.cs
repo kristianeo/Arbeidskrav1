@@ -103,14 +103,15 @@ public class Phonebook
 
     public void HeapSort(Field field, SortOrder order)
     {
-        
         for (int i = (_contacts.Length - 1) / 2; i >= 0; i--)
         {
+            if (_contacts[i] == null) return;
             MaxHeapify(field, order, _contacts.Length, i);
         }
         
         for (int i = _contacts.Length - 1; i >= 1; i--)
         {
+            if (_contacts[i] == null) return;
             (_contacts[i], _contacts[0]) = (_contacts[0], _contacts[i]);
             MaxHeapify(field, order, i, 0);
         }
