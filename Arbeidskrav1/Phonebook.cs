@@ -174,7 +174,7 @@ public class Phonebook
         if (String.Compare(target, _contacts[high - 1].GetProperty(field),
                 StringComparison.OrdinalIgnoreCase) == 0)
         {
-            return high;
+            return high - 1;
         }
 
         return -1;
