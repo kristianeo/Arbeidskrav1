@@ -171,12 +171,14 @@ public class Phonebook
             else low = mid + 1;
         }
 
-        if (String.Compare(target, _contacts[high - 1].GetProperty(field),
-                StringComparison.OrdinalIgnoreCase) == 0)
+        for (int i = high - 1; i >= 0; i--)
         {
-            return high - 1;
+            if (String.Compare(target, _contacts[i].GetProperty(field),
+                    StringComparison.OrdinalIgnoreCase) == 0) continue;
+            if (String.Compare(target, _contacts[i + 1].GetProperty(field),
+                    StringComparison.OrdinalIgnoreCase) == 0) return i + 1;
         }
-
+            
         return -1;
     }
 
