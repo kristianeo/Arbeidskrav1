@@ -19,7 +19,7 @@ public class InsertionSort : Algorithm, ISort
 
             while (j >= 0 && array[j] != null)
             {
-                if (FindOrder(array[j], current, field, Order))
+                if (FindOrder(array[j], current, field))
                 {
                     _moves++;
                     array[j + 1] = array[j];
