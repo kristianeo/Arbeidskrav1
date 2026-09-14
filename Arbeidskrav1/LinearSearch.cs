@@ -9,7 +9,7 @@ public class LinearSearch: Algorithm, ISearch
     
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] != null && FindOrder(GetField(array[i], field), target, field) == 0)
+            if (array[i] != null && FindOrder(GetField(array[i], field), target) == 0)
             {
                 _searchResults.Add(array[i]);
             }

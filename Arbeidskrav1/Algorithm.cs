@@ -20,7 +20,7 @@ public abstract class Algorithm
 
     public int Comparisons => _comparisons;
 
-    protected int FindOrder(string a, string b, Field field)
+    protected int FindOrder(string a, string b)
     {
         _comparisons++;
         int result = Math.Sign(string.Compare(a, b,
