@@ -195,8 +195,6 @@ public class Phonebook
         }
             
         return -1;
-        
-        //TODO: empty array/one value 
     }
 
     private bool FindOrder(string property, string current, SortOrder order)
