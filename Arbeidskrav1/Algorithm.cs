@@ -20,6 +20,14 @@ public abstract class Algorithm
 
     public int Comparisons => _comparisons;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns>-1 if a > b | 
+    /// 0 if a == b | 
+    /// +1 if b > a</returns>
     protected int FindOrder(string a, string b)
     {
         _comparisons++;
