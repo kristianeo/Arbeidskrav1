@@ -156,16 +156,44 @@ public class Phonebook
         }
     }
 
+    /// <summary>
+    /// Searches an array for a target string in given field.
+    /// The method uses InsertionSort to ensure the array is sorted by
+    /// given field before searching. 
+    /// </summary>
+    /// <param name="field">FirstName, LastName or Mobile</param>
+    /// <param name="target"></param>
+    /// <returns>index of first contact in the array matching target,
+    /// or -1 if criteria is not met</returns>
     public int BinarySearch(Field field, string target)
     {
-        for (int i = 0; i < _contacts.Length - 1; i++)
+        InsertionSort(field, SortOrder.Ascending);
+        int high = _contacts.Length - 1;
+        int low = 0;
+
+        if (low == high)
         {
-            if (string.Compare(_contacts[i].GetProperty(field), target, 
-                    StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                return i;
-            }
+            return low;
         }
+
+        while (low < high)
+        {
+            int mid = (low + high) / 2;
+            if (FindOrder(_contacts[mid].GetProperty(field), target, SortOrder.Ascending))
+            {
+                high = mid;
+            }
+            else low = mid + 1;
+        }
+
+        for (int i = high - 1; i >= 0; i--)
+        {
+            if (String.Compare(target, _contacts[i].GetProperty(field),
+                    StringComparison.OrdinalIgnoreCase) == 0) continue;
+            if (String.Compare(target, _contacts[i + 1].GetProperty(field),
+                    StringComparison.OrdinalIgnoreCase) == 0) return i + 1;
+        }
+            
         return -1;
     }
 
