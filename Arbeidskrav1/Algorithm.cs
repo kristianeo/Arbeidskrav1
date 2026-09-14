@@ -4,7 +4,9 @@ public enum Field { FirstName, LastName, Mobile }
 
 public abstract class Algorithm
 {
-    private string GetField(Contact contact, Field field) => field switch
+    protected SortOrder Order = SortOrder.Ascending;
+    
+    protected string GetField(Contact contact, Field field) => field switch
     {
         Field.FirstName => contact.FirstName,
         Field.LastName => contact.LastName,
@@ -14,21 +16,18 @@ public abstract class Algorithm
 
     protected int _comparisons;
 
+    protected int _moves;
+
     public int Comparisons => _comparisons;
 
-    protected bool FindOrder(Contact a, Contact b, Field field, SortOrder order)
+    protected int FindOrder(string a, string b, Field field)
     {
-        switch (order)
-        {
-            case SortOrder.Ascending when string.Compare(GetField(a, field), GetField(b, field),
-                StringComparison.OrdinalIgnoreCase) > 0:
-            case SortOrder.Descending when string.Compare(GetField(a, field), GetField(b, field),
-                StringComparison.OrdinalIgnoreCase) < 0:
-                _comparisons++;
-                return true;
-            default:
-                _comparisons++;
-                return false;
-        }
+        _comparisons++;
+        int result = Math.Sign(string.Compare(a, b,
+            StringComparison.OrdinalIgnoreCase));
+        
+        if (Order == SortOrder.Descending) return -result;
+        
+        return result;
     }
 }
