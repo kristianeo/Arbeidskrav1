@@ -31,28 +31,6 @@ public class Contact
     public string LastName => _lastname;
 
     public string Mobile => _mobile;
-    
-    public string GetProperty(Phonebook.Field field)
-    {
-        string property;
-        switch (field)
-        {
-            case Phonebook.Field.FirstName:
-                property = _firstname;
-                break;
-            case Phonebook.Field.LastName:
-                property = _lastname;
-                break;
-            case Phonebook.Field.Mobile:
-                property = _mobile;
-                break;
-            default:
-                property = "";
-                break;
-        }
-
-        return property;
-    }
 
     public override string ToString()
     {
