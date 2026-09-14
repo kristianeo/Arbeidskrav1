@@ -25,6 +25,13 @@ public class Contact
         _city = newInfo[5];
         
     }
+
+    public string FirstName => _firstname;
+    
+    public string LastName => _lastname;
+
+    public string Mobile => _mobile;
+    
     public string GetProperty(Phonebook.Field field)
     {
         string property;
