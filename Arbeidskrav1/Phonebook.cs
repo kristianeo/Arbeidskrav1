@@ -11,13 +11,7 @@ public class Phonebook
     private int _comparisons;
 
     private int _moves;
-
-    public enum Field
-    {
-        FirstName,
-        LastName, 
-        Mobile
-    }
+    
     public enum SortOrder { Ascending, Descending }
 
     public Phonebook(string[] phonebook)
