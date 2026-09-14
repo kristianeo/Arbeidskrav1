@@ -2,8 +2,25 @@ namespace Arbeidskrav1;
 
 public class BinarySearch:Algorithm
 {
+    public BinarySearch(SortOrder order = SortOrder.Ascending)
+    {
+        Order = order;
+    }
+    /// <summary>
+    /// Searches an array for a target string in given field.
+    /// The method uses InsertionSort to ensure the array is sorted by
+    /// given field before searching. 
+    /// </summary>
+    /// /// <param name="array"></param>
+    /// <param name="field">FirstName, LastName or Mobile</param>
+    /// <param name="target"></param>
+    /// <returns>index of first contact in the array matching target,
+    /// or -1 if criteria is not met</returns>
     public int Search(Contact[] array, Field field, string target)
-{
+    {
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.Sort(array, field);
+        
         int high = array.Length - 1;
         int low = 0;
 
