@@ -156,8 +156,18 @@ public class Phonebook
         }
     }
 
+    /// <summary>
+    /// Searches an array for a target string in given field.
+    /// The method uses InsertionSort to ensure the array is sorted by
+    /// given field before searching. 
+    /// </summary>
+    /// <param name="field">FirstName, LastName or Mobile</param>
+    /// <param name="target"></param>
+    /// <returns>index of first contact in the array matching target,
+    /// or -1 if criteria is not met</returns>
     public int BinarySearch(Field field, string target)
     {
+        InsertionSort(field, SortOrder.Ascending);
         int high = _contacts.Length - 1;
         int low = 0;
 
@@ -180,6 +190,8 @@ public class Phonebook
         }
             
         return -1;
+        
+        //TODO: empty array/one value 
     }
 
     private bool FindOrder(string property, string current, SortOrder order)
