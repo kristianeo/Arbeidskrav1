@@ -171,6 +171,11 @@ public class Phonebook
         int high = _contacts.Length - 1;
         int low = 0;
 
+        if (low == high)
+        {
+            return low;
+        }
+
         while (low < high)
         {
             int mid = (low + high) / 2;
