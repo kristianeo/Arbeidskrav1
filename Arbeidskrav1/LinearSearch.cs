@@ -12,6 +12,7 @@ public class LinearSearch: Algorithm, ISearch
             if (array[i] != null && FindOrder(GetField(array[i], field), target) == 0)
             {
                 _searchResults.Add(array[i]);
+                if (field == Field.Mobile) break;
             }
         }
 
