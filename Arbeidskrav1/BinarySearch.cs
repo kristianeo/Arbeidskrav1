@@ -6,6 +6,7 @@ public class BinarySearch:Algorithm
     {
         Order = order;
     }
+
     /// <summary>
     /// Searches an array for a target string in given field.
     /// The method uses InsertionSort to ensure the array is sorted by
@@ -21,38 +22,33 @@ public class BinarySearch:Algorithm
         //InsertionSort insertionSort = new InsertionSort();
         //insertionSort.Sort(array, field);
         _comparisons = 0;
-        
+
         int high = array.Length - 1;
         int low = 0;
         int index = -1;
 
-        if (low == high)
+        while (low <= high)
         {
-            return low;
-        }
-
-        while (low < high)
-        {
-            int mid = (low + high) / 2; 
-            if (FindOrder(GetField(array[mid], field), target) < 0)
-            {
-                high = mid;
-            }
-            else if (FindOrder(GetField(array[mid], field), target) == 0)
+            int mid = (low + high) / 2;
+            int comparison = FindOrder(GetField(array[mid], field), target);
+            if (comparison > 0) high = mid -1;
+            else if (comparison < 0) low = mid + 1;
+            else
             {
                 high = mid;
                 break;
             }
-            else low = mid + 1;
         }
 
         for (int i = high - 1; i >= 0; i--)
         {
-            if (string.Compare(target, GetField(array[i], field), StringComparison.OrdinalIgnoreCase) == 0) continue;
-            if (string.Compare(target, GetField(array[i + 1], field), StringComparison.OrdinalIgnoreCase) == 0) index = i + 1;
+            if (string.Compare(target, GetField(array[i], field), StringComparison.OrdinalIgnoreCase) ==
+                0) continue;
+            if (string.Compare(target, GetField(array[i + 1], field), StringComparison.OrdinalIgnoreCase) == 0)
+                index = i + 1;
         }
 
         Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
         return index;
+        }
     }
-}
