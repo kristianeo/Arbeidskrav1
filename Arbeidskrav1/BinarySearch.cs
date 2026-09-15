@@ -38,6 +38,11 @@ public class BinarySearch:Algorithm
             {
                 high = mid;
             }
+            else if (FindOrder(GetField(array[mid], field), target) == 0)
+            {
+                high = mid;
+                break;
+            }
             else low = mid + 1;
         }
 
