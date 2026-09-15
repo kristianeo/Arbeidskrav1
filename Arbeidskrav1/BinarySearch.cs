@@ -26,6 +26,7 @@ public class BinarySearch:Algorithm
         int high = array.Length - 1;
         int low = 0;
         int index = -1;
+        bool targetFound = false;
 
         while (low <= high)
         {
@@ -36,16 +37,21 @@ public class BinarySearch:Algorithm
             else
             {
                 high = mid;
+                index = high;
+                targetFound = true;
                 break;
             }
         }
 
-        for (int i = high - 1; i >= 0; i--)
+        if (targetFound && high > 0)
         {
-            if (string.Compare(target, GetField(array[i], field), StringComparison.OrdinalIgnoreCase) ==
-                0) continue;
-            if (string.Compare(target, GetField(array[i + 1], field), StringComparison.OrdinalIgnoreCase) == 0)
-                index = i + 1;
+            
+            while (high > 0 && string.Compare(target, GetField(array[high], field), 
+                       StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                high--;
+            }
+            index = high + 1;
         }
 
         Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
