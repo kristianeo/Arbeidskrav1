@@ -1,16 +1,8 @@
-using System.Security.Cryptography;
-
 namespace Arbeidskrav1;
 
 public class Phonebook
 {
     private Contact[] _contacts;
-
-    private List<Contact>? _searchResults;
-
-    private int _moves;
-    
-    public enum SortOrder { Ascending, Descending }
 
     public Phonebook(string[] phonebook)
     {
@@ -27,9 +19,9 @@ public class Phonebook
         return _contacts;
     }
 
-    public int Moves()
+    public Contact Contact(int index)
     {
-        return _moves;
+        return _contacts[index];
     }
     
 }
