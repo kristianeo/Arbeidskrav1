@@ -27,6 +27,7 @@ public class HeapSort: Algorithm, ISort
             MaxHeapify(array, field, i, 0);
         }
 
+        Console.WriteLine($"{_comparisons} - {-_moves}");
         return array;
     }
 

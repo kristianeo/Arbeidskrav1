@@ -9,6 +9,7 @@ public class InsertionSort : Algorithm, ISort
     public Contact[] Sort(Contact[] array, Field field)
     {
         _moves = 0;
+        _comparisons = 0;
         
         for (int i = 1; i < array.Length; i++)
         {
@@ -31,6 +32,7 @@ public class InsertionSort : Algorithm, ISort
             array[j + 1] = insert;
         }
 
+        Console.Write($"{_comparisons} - {_moves}");
         return array;
     }
 }
