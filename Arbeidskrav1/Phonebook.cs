@@ -8,8 +8,6 @@ public class Phonebook
 
     private List<Contact>? _searchResults;
 
-    private int _comparisons;
-
     private int _moves;
     
     public enum SortOrder { Ascending, Descending }
@@ -22,11 +20,6 @@ public class Phonebook
             Contact contact = new Contact(phonebook[i]);
             _contacts[i - 1] = contact;
         }
-    }
-    
-    public int Comparisons()
-    {
-        return _comparisons;
     }
 
     public Contact[] Contacts()
