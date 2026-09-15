@@ -25,9 +25,9 @@ public abstract class Algorithm
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
-    /// <returns>-1 if a > b | 
+    /// <returns>-1 if b > a | 
     /// 0 if a == b | 
-    /// +1 if b > a</returns>
+    /// +1 if a > b</returns>
     protected int FindOrder(string a, string b)
     {
         _comparisons++;
