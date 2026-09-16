@@ -57,4 +57,29 @@ public class BinarySearch:Algorithm
         Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
         return index;
         }
+
+    public int BinarySearchRecursion(Contact[] array, Field field, string target, int high, int low)
+    {
+        int index;
+        if (low > high)
+        {
+            index = -1;
+            Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
+            return index;
+        }
+    
+        int mid = (low + high) / 2;
+        int comparison = FindOrder(GetField(array[mid], field), target);
+        switch (comparison)
+        {
+            case > 0:
+                return BinarySearchRecursion(array, field, target, mid-1, low);
+            case < 0:
+                return BinarySearchRecursion(array, field, target, high, mid+1);
+            case 0:
+                index = mid;
+                Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
+                return index;
+        }
     }
+}
