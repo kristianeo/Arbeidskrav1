@@ -72,6 +72,8 @@ public class BinarySearch:Algorithm
 
     private int FindFirstInstance(Contact[] array, Field field, int index, string target)
     {
+        // Finding the first instance should not count as comparisons in the search methods
+        _comparisons--;
         // If the value on the previous index is smaller than the target, the index is the first instance
         if (FindOrder(GetField(array[index - 1], field), target) < 0) return index;
         // Checks recursively all the previous indices until one is smaller 
