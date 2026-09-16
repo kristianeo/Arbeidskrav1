@@ -50,7 +50,6 @@ public class BinarySearch:Algorithm
         if (low > high)
         {
             index = -1;
-            Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
             return index;
         }
     
@@ -65,7 +64,6 @@ public class BinarySearch:Algorithm
             case 0:
                 int comparisons = _comparisons;
                 index = FindFirstInstance(array, field, mid, target);
-                Console.WriteLine($"{target} - [{index.ToString()}] - {comparisons}");
                 return index;
         }
     }

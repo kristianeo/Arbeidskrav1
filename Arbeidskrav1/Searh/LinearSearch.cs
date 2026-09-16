@@ -16,8 +16,6 @@ public class LinearSearch: Algorithm, ISearch
                 if (field == Field.Mobile) break;
             }
         }
-        
-        Console.WriteLine($"{field} - {target} - {_searchResults.Count} - {_comparisons}");
 
         return _searchResults.ToArray();
     }

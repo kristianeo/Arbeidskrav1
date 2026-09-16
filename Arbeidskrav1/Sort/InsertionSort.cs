@@ -31,8 +31,6 @@ public class InsertionSort : Algorithm, ISort
             
             array[j + 1] = insert;
         }
-
-        Console.Write($"{_comparisons} - {_moves}");
         return array;
     }
 }
