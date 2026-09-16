@@ -20,6 +20,8 @@ public abstract class Algorithm
 
     public int Comparisons => _comparisons;
 
+    public int Moves => _moves;
+
     /// <summary>
     /// 
     /// </summary>
