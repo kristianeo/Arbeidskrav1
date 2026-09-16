@@ -36,11 +36,9 @@ public class BinarySearch:Algorithm
             else
             {
                 index = FindFirstInstance(array, field, mid, target);
-                Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
                 return index;
             }
         }
-        Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
         return index;
         }
 
