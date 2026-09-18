@@ -36,7 +36,7 @@ class Program
         
         // Mobile number in the file
         results = linearSearch.Search(phonebook.Contacts(), Field.Mobile, "48955861");
-        tableLinear.AddRow(4, "Mobile", "48955861", results.Length, linearSearch.Comparisons);
+        tableLinear.AddRow(5, "Mobile", "48955861", results.Length, linearSearch.Comparisons);
         
         tableLinear.Write();
 
@@ -106,6 +106,10 @@ class Program
         expectedIndex = ExpectedIndex(phonebook.Contacts(), Field.LastName, "Kristoffersen");
         passOrFail = PassOrFail(expectedIndex, index);
         table.AddRow(4, "Last name", "Kristoffersen", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+
+        // Testing to check if target is first instance
+        int indexTest = index - 1;
+        Contact contactTest = phonebook.Contact(indexTest);
         
         // A surname not in the file 
         index = bSearch.Search(phonebook.Contacts(), Field.LastName, "Zloten");
@@ -121,6 +125,10 @@ class Program
         expectedIndex = ExpectedIndex(phonebook.Contacts(), Field.FirstName, "Thea");
         passOrFail = PassOrFail(expectedIndex, index);
         table.AddRow(6, "First name", "Thea", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+        
+        // Testing to check if target is first instance
+        int indexTest2 = index - 1;
+        Contact contactTest2 = phonebook.Contact(indexTest2);
         
         // Any target on an empty array
         Contact[] emptyArray = [];
@@ -138,6 +146,12 @@ class Program
         table.AddRow(8, "First name", "Camilla", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
         
         table.Write();
+        
+        // Printing test results
+        Console.WriteLine($"#4 test: Contact[{indexTest}] = {contactTest.LastName}");
+        Console.WriteLine($"#6 test: Contact[{indexTest2}] = {contactTest2.FirstName}");
+
+        
         (int, string) PassOrFail(int expected, int searchResult)
         {
             if (expected == searchResult) return (expected, "pass");
