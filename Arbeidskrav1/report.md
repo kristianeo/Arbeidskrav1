@@ -94,9 +94,9 @@ sorted array. I have chosen not to count these comparisons as a part of the sear
 | Algorithm      | Comparison cost (average-case) |
 |----------------|--------------------------------|
 | Linear search  | 200                            | 
+| Binary search  | 8                              |
 | Insertion sort | 40 000                         | 
 | Heap sort      | 1528                           | 
-| Binary search  | 8                              |
 -------------------------
 Binary search uses 192 fewer comparisons than linear search, but we need to take
 into account the comparisons used for sorting. Calculating how many searches to 
@@ -107,9 +107,14 @@ perform before sorting pays for itself:
 40 000/192 = 208,33 => 208 times using insertion sort
 
 ## 4. Insight
+The single most useful thing these figures taught me is the efficiency of binary search
+on a sorted array. Getting a refresher on logarithms (which has been a while since I've last
+thought about), has made me realize its time complexity O(log n) is the exponent of base 2 (2^7,95 = 200).
+The binary search is a great example of how logarithms are inverse exponential, and it helps
+me understand how it is so efficient. 
 
-**One paragraph.** [What is the single most useful thing these figures taught you
-about choosing an algorithm? Write about something your own numbers show, not
-something you read.]
+Unlike linear search, binary search needs a sorted array. In my calculations the cost
+is paid off after 8 searches, using heap sort for the sorting. It is important 
+to remember heap sort is not stable, so it may not return the same order as insertion sort.
 
 Sources: https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
