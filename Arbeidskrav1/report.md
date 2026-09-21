@@ -32,10 +32,10 @@ until the target is reached.
 | Algorithm | Input shape | Comparisons | Swaps or moves |
 |---|---|---|---|
 | 1 | Insertion sort | As-supplied    | 9691        | 9494  |
-| 2 | Heap sort      | As-supplied    | 2458        | 1347  |
 | 3 | Insertion sort | Already sorted | 199         | 0     |
-| 4 | Heap sort      | Already sorted | 2485        | 1426  |
 | 5 | Insertion sort | Reverse sorted | 17375       | 17190 |
+| 2 | Heap sort      | As-supplied    | 2458        | 1347  |
+| 4 | Heap sort      | Already sorted | 2485        | 1426  |
 | 6 | Heap sort      | Reverse sorted | 2248        | 1182  |
 ------------------------------------------------------------- 
 **Reflection**
@@ -89,8 +89,7 @@ Typically, binary search returns the first result it encounters, regardless if i
 instance or not. Before returning the result, it now runs a recursive method to check if
 the value of the previous index is smaller than the target. It returns the index where
 contact[index - 1] is smaller than the target, thus returning the first instance in the
-sorted array. I have chosen not to count these comparisons as a part of the comparisons
-for the search, as I want those to reflect the complexities. 
+sorted array. I have chosen not to count these comparisons as a part of the search, as I want that to reflect the complexity. 
 
 | Algorithm      | Comparison cost (average-case) |
 |----------------|--------------------------------|
@@ -99,18 +98,13 @@ for the search, as I want those to reflect the complexities.
 | Heap sort      | 1528                           | 
 | Binary search  | 8                              |
 -------------------------
-Binary search uses 192 less comparisons than linear search, but we need to take
-into account the comparisons used for sorting.
+Binary search uses 192 fewer comparisons than linear search, but we need to take
+into account the comparisons used for sorting. Calculating how many searches to 
+perform before sorting pays for itself: 
 
-1528/192 = 8(rounded) => 8 times using heap sort
+1528/192 = 7,95 => 8 times using heap sort
 
-40 000/192 = 208(rounded) => 208 times using insertion sort
-
-[How many comparisons did binary search need against 200
-contacts, and how does that compare with log2(200)? How do you guarantee the
-first occurrence when a surname is duplicated? Sorting cost you the comparisons
-in part 2: how many searches must you perform before sorting first pays for
-itself?]
+40 000/192 = 208,33 => 208 times using insertion sort
 
 ## 4. Insight
 
