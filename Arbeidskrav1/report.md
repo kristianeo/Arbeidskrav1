@@ -81,11 +81,9 @@ Linear search on the same targets, for comparison:
 
 **Reflection** 
 
-Binary search complexity: Best-case O(1) when target is middle value. 
-Average-case and worst-case O(log n) = 7,64. 
-
 The big-O notation reflects how the complexity grows with increasing n values. 
-On average a search takes 7-8 comparisons, and results lower than this represents 
+The comparisons in this case are directly reflected in the complexity since it is 
+logarithmic. On average a search takes 7-8 comparisons, and results lower than this represents 
 targets closer to the root (values in the middle of the array). For targets not in
 the array, they reflect the worst-case by comparing 7 or 8 times, depending on the
 depth of the branch it travels down. 
@@ -94,7 +92,8 @@ Typically, binary search returns the first result it encounters, regardless if i
 instance or not. Before returning the result, it now runs a recursive method to check if
 the value of the previous index is smaller than the target. It returns the index where
 contact[index - 1] is smaller than the target, thus returning the first instance in the
-sorted array. I have chosen not to count these comparisons as a part of the search, as I want that to reflect the complexity. 
+sorted array. I have chosen not to count these comparisons as a part of the search, as I want 
+that to reflect the complexity. 
 
 | Algorithm      | Comparison cost (average-case) |
 |----------------|--------------------------------|
