@@ -116,5 +116,10 @@ me understand how it is so efficient.
 Unlike linear search, binary search needs a sorted array. In my calculations the cost
 is paid off after 8 searches, using heap sort for the sorting. It is important 
 to remember heap sort is not stable, so it may not return the same order as insertion sort.
+This can be solved by using a different sorting algorithm. 
 
-Sources: https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
+## Sources:
+https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
+*Used this in the beginning to understand where to place the swap and comparisons*
+
+I did not use AI for this submission, except for some conceptual discussions. 
