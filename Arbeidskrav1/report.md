@@ -88,6 +88,10 @@ targets closer to the root (values in the middle of the array). For targets not 
 the array, they reflect the worst-case by comparing 7 or 8 times, depending on the
 depth of the branch it travels down. 
 
+I added a private method in the BinarySearch class to check if the array is sorted, 
+which Search runs before continuing. If the array is not sorted, 
+it shows an error message and returns -1 since the conditions are not met. 
+
 Typically, binary search returns the first result it encounters, regardless if it's the first
 instance or not. Before returning the result, it now runs a recursive method to check if
 the value of the previous index is smaller than the target. It returns the index where
