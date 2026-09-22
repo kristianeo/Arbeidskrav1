@@ -123,6 +123,11 @@ is paid off after 8 searches, using heap sort for the sorting. It is important
 to remember heap sort is not stable, so it does not necessarily preserve the original order.
 This can be solved by using a different sorting algorithm, if that is important.
 
+This assignment has shown the different time complexities in practice, and demonstrated 
+the large impact with a sample value of 200. Where heap sort has a stable complexity of
+around 1500 with either best- or worst-case, insertion sort has an average- and worst-case
+at 40 000. The only benefit with insertion sort, is with an already sorted array. 
+
 ## Sources:
 https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
 *Used this in the beginning to understand where to place the swap and comparisons*
