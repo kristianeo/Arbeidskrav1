@@ -31,6 +31,14 @@ public class Contact
     public string LastName => _lastname;
 
     public string Mobile => _mobile;
+    
+    public string GetField(Field field) => field switch
+    {
+        Field.FirstName => FirstName,
+        Field.LastName => LastName,
+        Field.Mobile => Mobile,
+        _ => throw new ArgumentOutOfRangeException(nameof(field))
+    };
 
     public override string ToString()
     {

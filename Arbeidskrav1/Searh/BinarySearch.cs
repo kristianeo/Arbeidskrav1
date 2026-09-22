@@ -36,11 +36,9 @@ public class BinarySearch:Algorithm
             else
             {
                 index = FindFirstInstance(array, field, mid, target);
-                Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
                 return index;
             }
         }
-        Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
         return index;
         }
 
@@ -50,7 +48,6 @@ public class BinarySearch:Algorithm
         if (low > high)
         {
             index = -1;
-            Console.WriteLine($"{target} - [{index.ToString()}] - {_comparisons}");
             return index;
         }
     
@@ -65,13 +62,15 @@ public class BinarySearch:Algorithm
             case 0:
                 int comparisons = _comparisons;
                 index = FindFirstInstance(array, field, mid, target);
-                Console.WriteLine($"{target} - [{index.ToString()}] - {comparisons}");
                 return index;
         }
     }
 
     private int FindFirstInstance(Contact[] array, Field field, int index, string target)
     {
+        if (array.Length == 1) return index;
+        // Finding the first instance should not count as comparisons in the search methods
+        _comparisons--;
         // If the value on the previous index is smaller than the target, the index is the first instance
         if (FindOrder(GetField(array[index - 1], field), target) < 0) return index;
         // Checks recursively all the previous indices until one is smaller 
