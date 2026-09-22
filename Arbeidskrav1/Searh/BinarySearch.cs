@@ -19,8 +19,11 @@ public class BinarySearch:Algorithm
     /// or -1 if criteria is not met</returns>
     public int Search(Contact[] array, Field field, string target)
     {
-        //InsertionSort insertionSort = new InsertionSort();
-        //insertionSort.Sort(array, field);
+        if (!IsSorted(array, field))
+        {
+            Console.WriteLine("Error: the array is not sorted by given field...");
+            return -1;
+        }
         _comparisons = 0;
 
         int high = array.Length - 1;
@@ -75,5 +78,18 @@ public class BinarySearch:Algorithm
         if (FindOrder(GetField(array[index - 1], field), target) < 0) return index;
         // Checks recursively all the previous indices until one is smaller 
         return FindFirstInstance(array, field, index - 1, target);
+    }
+    
+    private bool IsSorted(Contact[] arr, Field field)
+    {
+        int last = arr.Length - 1;
+        if (last < 1) return true;
+
+        int i = 0;
+
+        while(i < last && FindOrder(GetField(arr[i], field), GetField(arr[i + 1], field)) <= 0)
+            i++;
+
+        return i == last;
     }
 }

@@ -122,5 +122,7 @@ This can be solved by using a different sorting algorithm, if that is important.
 ## Sources:
 https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
 *Used this in the beginning to understand where to place the swap and comparisons*
+https://stackoverflow.com/questions/11989071/fastest-way-to-check-if-an-array-is-sorted
+*Method to check if array is sorted*
 
 I did not use AI for this submission, except for some conceptual discussions. 
