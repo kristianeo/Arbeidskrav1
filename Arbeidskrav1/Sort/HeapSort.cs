@@ -19,7 +19,7 @@ public class HeapSort: Algorithm, ISort
         }
         
         // Moves largest node (first one) to the end and shortens the available array
-        for (int i = array.Length - 1; i >= 1; i--)
+        for (int i = array.Length - 1; i >= 0; i--)
         {
             if (array[i] == null) continue;
             (array[i], array[0]) = (array[0], array[i]);
@@ -31,7 +31,7 @@ public class HeapSort: Algorithm, ISort
 
     private void MaxHeapify(Contact[] array, Field field, int length, int i)
     {
-        if (i > (length - 1) / 2) return;
+        if (i >= (length - 1) / 2) return;
         
         int current = i;
         int leftChild = 2 * i + 1;
