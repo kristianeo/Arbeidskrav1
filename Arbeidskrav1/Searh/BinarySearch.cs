@@ -9,14 +9,16 @@ public class BinarySearch:Algorithm
 
     /// <summary>
     /// Searches an array for a target string in given field.
-    /// The method uses InsertionSort to ensure the array is sorted by
-    /// given field before searching. 
+    /// Cheks if the array is sorted by private method.
+    /// Best-case complexity 0(1), means target is in the middle
+    /// of the array. 
+    /// Average- and worst case O(log n) = 7.64
     /// </summary>
     /// /// <param name="array"></param>
     /// <param name="field">FirstName, LastName or Mobile</param>
     /// <param name="target"></param>
     /// <returns>index of first contact in the array matching target,
-    /// or -1 if criteria is not met</returns>
+    /// or -1 if criteria is not met or the array is not sorted</returns>
     public int Search(Contact[] array, Field field, string target)
     {
         if (!IsSorted(array, field))
@@ -45,30 +47,6 @@ public class BinarySearch:Algorithm
         return index;
         }
 
-    public int BinarySearchRecursion(Contact[] array, Field field, string target, int high, int low)
-    {
-        int index;
-        if (low > high)
-        {
-            index = -1;
-            return index;
-        }
-    
-        int mid = (low + high) / 2;
-        int comparison = FindOrder(GetField(array[mid], field), target);
-        switch (comparison)
-        {
-            case > 0:
-                return BinarySearchRecursion(array, field, target, mid-1, low);
-            case < 0:
-                return BinarySearchRecursion(array, field, target, high, mid+1);
-            case 0:
-                int comparisons = _comparisons;
-                index = FindFirstInstance(array, field, mid, target);
-                return index;
-        }
-    }
-
     private int FindFirstInstance(Contact[] array, Field field, int index, string target)
     {
         if (array.Length == 1) return index;
@@ -80,6 +58,7 @@ public class BinarySearch:Algorithm
         return FindFirstInstance(array, field, index - 1, target);
     }
     
+    // Checks if the supplied array is sorted by the given field
     private bool IsSorted(Contact[] arr, Field field)
     {
         int last = arr.Length - 1;

@@ -14,6 +14,11 @@ public class Contact
 
     private string _city;
 
+    /// <summary>
+    /// Returns new instance of Contact with
+    /// info from a line in the phonebook
+    /// </summary>
+    /// <param name="info"></param>
     public Contact(string info)
     {
         string[] newInfo = info.Split(',');
@@ -32,6 +37,12 @@ public class Contact
 
     public string Mobile => _mobile;
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="field"></param>
+    /// <returns>The field value</returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public string GetField(Field field) => field switch
     {
         Field.FirstName => FirstName,

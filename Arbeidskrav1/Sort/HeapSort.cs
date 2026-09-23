@@ -6,6 +6,16 @@ public class HeapSort: Algorithm, ISort
     {
         Order = order;
     }
+    
+    /// <summary>
+    /// Constructs a max heap, starting at the last index with children.
+    /// Then goes into a loop where it moves the max value (index 0) to the end,
+    /// shortens the length of the array and constructs a new max heap.
+    /// Time complexity (log n) = 7,64. Not stable. In-place.
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="field"></param>
+    /// <returns>A non-stable sorted array</returns>
     public Contact[] Sort(Contact[] array, Field field)
     {
         _moves = 0;
@@ -18,7 +28,8 @@ public class HeapSort: Algorithm, ISort
             MaxHeapify(array, field, array.Length, i);
         }
         
-        // Moves largest node (first one) to the end and shortens the available array
+        // Moves largest node (first one) to the end and shortens the available array,
+        // before finding max heap again. 
         for (int i = array.Length - 1; i >= 0; i--)
         {
             if (array[i] == null) continue;

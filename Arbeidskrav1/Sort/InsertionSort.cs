@@ -6,6 +6,16 @@ public class InsertionSort : Algorithm, ISort
     {
         Order = order;
     }
+    
+    /// <summary>
+    /// Compares each index against the values to its left, building a sorted array.
+    /// Each new element is compared against the already sorted part, and
+    /// gets put in the correct position.
+    /// Time complexity (N^2) = 40 000. Stable, in-place.
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="field"></param>
+    /// <returns>A sorted array</returns>
     public Contact[] Sort(Contact[] array, Field field)
     {
         _moves = 0;
