@@ -23,7 +23,7 @@ public class BinarySearch:Algorithm
     {
         if (!IsSorted(array, field))
         {
-            Console.WriteLine("Error: the array is not sorted by given field...");
+            Console.WriteLine($"Error(target: {target}): the array is not sorted by {field}...");
             return -1;
         }
         _comparisons = 0;
