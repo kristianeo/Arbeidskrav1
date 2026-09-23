@@ -17,8 +17,7 @@ class Program
             Phonebook phonebook = new Phonebook(lines);
             Phonebook phonebook2 = new Phonebook(lines);
 
-
-            // Linear search
+            // LINEAR SEARCH
             Console.WriteLine("1. LINEAR SEARCH, UNSORTED: ");
             var tableLinear = new ConsoleTable("#", "Field", "Target",
                 "Matches", "Comparisons");
@@ -46,7 +45,7 @@ class Program
 
             tableLinear.Write();
 
-            // Sorting
+            // SORTING
             Console.WriteLine("\n2. SORTING - BY LAST NAME ASCENDING:");
             var tableSort = new ConsoleTable("#", "Algorithm", "Shape",
                 "Comparisons", "Swaps");
@@ -74,10 +73,30 @@ class Program
 
             heapSort.Sort(phonebook.Contacts(), Field.LastName);
             tableSort.AddRow(6, "Heap sort", "Reverse sorted", heapSort.Comparisons, heapSort.Moves);
+            
+            // One-element array 
+            string[] testContact = ["Magnus,Dahl,42797145,1972-12-02,Torggata 21,Bodo"];
+            Phonebook one = new Phonebook(testContact);
+            
+            insertionSort.Sort(one.Contacts(), Field.FirstName);
+            tableSort.AddRow(7, "Insertion sort", "One-element array", insertionSort.Comparisons, insertionSort.Moves);
+
+            heapSort.Sort(one.Contacts(), Field.FirstName);
+            tableSort.AddRow(8, "Heap sort", "One-element array", heapSort.Comparisons, heapSort.Moves);
+            
+            // Empty array
+            string[] emptyArrayTest = [];
+            Phonebook empty = new Phonebook(emptyArrayTest);
+            
+            insertionSort.Sort(empty.Contacts(), Field.FirstName);
+            tableSort.AddRow(7, "Insertion sort", "Empty array", insertionSort.Comparisons, insertionSort.Moves);
+
+            heapSort.Sort(empty.Contacts(), Field.FirstName);
+            tableSort.AddRow(8, "Heap sort", "Empty array", heapSort.Comparisons, heapSort.Moves);
 
             tableSort.Write();
 
-            // Binary search
+            // BINARY SEARCH
             Console.WriteLine("\n3. BINARY SEARCH - BY LAST NAME ASCENDING");
             BinarySearch bSearch = new BinarySearch();
             var table = new ConsoleTable("#", "Sorted by", "Target",
@@ -142,7 +161,7 @@ class Program
             index = bSearch.Search(emptyArray, Field.FirstName, "Camilla");
             expectedIndex = ExpectedIndex(emptyArray, Field.FirstName, "Camilla");
             passOrFail = PassOrFail(expectedIndex, index);
-            table.AddRow(7, "First name", "Camilla", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+            table.AddRow(7, "First name", "Camilla (empty array)", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
 
             // The only value in a one element array 
             Contact contact = new Contact("Camilla,Hansen,95877468,1975-05-12,Parkveien 31,Halden");
@@ -150,7 +169,14 @@ class Program
             index = bSearch.Search(oneElementArray, Field.FirstName, "Camilla");
             expectedIndex = ExpectedIndex(oneElementArray, Field.FirstName, "Camilla");
             passOrFail = PassOrFail(expectedIndex, index);
-            table.AddRow(8, "First name", "Camilla", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+            table.AddRow(8, "First name", "Camilla (one-element array)", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+            
+            // Unsorted array 
+            Phonebook unsortedPhonebook = new Phonebook(lines);
+            index = bSearch.Search(unsortedPhonebook.Contacts(), Field.Mobile, "92213030");
+            expectedIndex = ExpectedIndex(unsortedPhonebook.Contacts(), Field.Mobile, "92213030");
+            passOrFail = PassOrFail(expectedIndex, index);
+            table.AddRow(8, "Mobile", "92213030 (unsorted array)", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
 
             table.Write();
 
