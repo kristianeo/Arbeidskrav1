@@ -75,10 +75,13 @@ Both sorting algorithms works on empty and one-element arrays.
 | 7 | First name | Camilla (empty array)                 | -1       | -1     | 0           | pass      |
 | 8 | First name | Camilla (one-element array)           | 0        | 0      | 1           | pass      |
 | 8 | Mobile     | 92213030 (unsorted array)             | 32       | -1     | 2           | fail      |
---------------------------------------------------------------------------------
+Error(target: 92213030): the array is not sorted by Mobile...
+
 **#4 test:** Contact[128] = Kristiansen (Before Kristoffersen in the sorted array)
 
 **#6 test:** Contact[176] = Stian (Before Thea in the sorted array)
+
+--------------------------------------------------------------------------------
 
 Linear search on the same targets, for comparison:
 
