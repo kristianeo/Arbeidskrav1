@@ -13,23 +13,19 @@ public class InsertionSort : Algorithm, ISort
         
         for (int i = 1; i < array.Length; i++)
         {
-            if (array[i] == null) continue;
             int j = i - 1;
+            if (array[i] == null | array[j] == null) continue;
             var current = array[i];
-            var insert = array[i];
 
-            while (j >= 0 && array[j] != null)
+            while (j >= 0 && FindOrder(GetField(array[j], field), GetField(current, field)) > 0)
             {
-                if (FindOrder(GetField(array[j], field), GetField(current, field)) > 0)
-                {
-                    _moves++;
-                    array[j + 1] = array[j];
-                    j--;
-                }
-                else break;
+                _moves++;
+                array[j + 1] = array[j];
+                j--;
+                
             }
             
-            array[j + 1] = insert;
+            array[j + 1] = current;
         }
         return array;
     }
