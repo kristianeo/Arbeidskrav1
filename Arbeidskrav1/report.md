@@ -103,6 +103,7 @@ heap sort. The only benefit with insertion sort is with a small, already sorted 
 
 ## Sources:
 https://stackoverflow.com/questions/45298497/difference-between-comparisons-and-swaps-in-insertion-sort
+
 https://stackoverflow.com/questions/11989071/fastest-way-to-check-if-an-array-is-sorted
 
 I did not use AI for this submission, except for some conceptual discussions. 
