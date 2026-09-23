@@ -5,10 +5,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        string path = @"..\..\..\Library\phonebook.csv";
+        // string path = @"..\Library\phonebook.csv";
+        string path = Path.Combine(AppContext.BaseDirectory, @"Library\phonebook.csv");
         if (!File.Exists(path))
         {
-            Console.WriteLine("Phonebook not found...");
+            Console.WriteLine($"Phonebook not found... {path}");
         }
         else
         {
