@@ -18,10 +18,10 @@ public class HeapSort: Algorithm, ISort
     /// <returns>A non-stable sorted array</returns>
     public Contact[] Sort(Contact[] array, Field field)
     {
-        if (array.Length <= 1) return array; 
-        
         _moves = 0;
         _comparisons = 0;
+        
+        if (array.Length <= 1) return array; 
         
         //Constructs Max heap
         for (int i = (array.Length - 1) / 2; i >= 0; i--)
