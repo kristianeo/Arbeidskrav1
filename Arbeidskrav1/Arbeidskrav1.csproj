@@ -9,6 +9,9 @@
 
     <ItemGroup>
       <PackageReference Include="ConsoleTables" Version="2.7.0" />
+	<Content Include="Library\phonebook.csv">
+	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
     </ItemGroup>
 
 </Project>
