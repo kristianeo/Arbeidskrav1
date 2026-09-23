@@ -40,8 +40,8 @@ class Program
             tableLinear.AddRow(4, "Mobile", "12345678", results.Length, linearSearch.Comparisons);
 
             // Mobile number in the file
-            results = linearSearch.Search(phonebook.Contacts(), Field.Mobile, "48955861");
-            tableLinear.AddRow(5, "Mobile", "48955861", results.Length, linearSearch.Comparisons);
+            results = linearSearch.Search(phonebook.Contacts(), Field.Mobile, "90468543");
+            tableLinear.AddRow(5, "Mobile", "90468543", results.Length, linearSearch.Comparisons);
 
             tableLinear.Write();
 
@@ -75,23 +75,22 @@ class Program
             tableSort.AddRow(6, "Heap sort", "Reverse sorted", heapSort.Comparisons, heapSort.Moves);
             
             // One-element array 
-            string[] testContact = ["Magnus,Dahl,42797145,1972-12-02,Torggata 21,Bodo"];
-            Phonebook one = new Phonebook(testContact);
+            Contact oneContact = new Contact("Magnus,Dahl,42797145,1972-12-02,Torggata 21,Bodo");
+            Contact[] oneElement = [oneContact];
             
-            insertionSort.Sort(one.Contacts(), Field.FirstName);
+            insertionSort.Sort(oneElement, Field.FirstName);
             tableSort.AddRow(7, "Insertion sort", "One-element array", insertionSort.Comparisons, insertionSort.Moves);
 
-            heapSort.Sort(one.Contacts(), Field.FirstName);
+            heapSort.Sort(oneElement, Field.FirstName);
             tableSort.AddRow(8, "Heap sort", "One-element array", heapSort.Comparisons, heapSort.Moves);
             
             // Empty array
-            string[] emptyArrayTest = [];
-            Phonebook empty = new Phonebook(emptyArrayTest);
+            Contact[] empty = [];
             
-            insertionSort.Sort(empty.Contacts(), Field.FirstName);
+            insertionSort.Sort(empty, Field.FirstName);
             tableSort.AddRow(7, "Insertion sort", "Empty array", insertionSort.Comparisons, insertionSort.Moves);
 
-            heapSort.Sort(empty.Contacts(), Field.FirstName);
+            heapSort.Sort(empty, Field.FirstName);
             tableSort.AddRow(8, "Heap sort", "Empty array", heapSort.Comparisons, heapSort.Moves);
 
             tableSort.Write();
@@ -109,7 +108,7 @@ class Program
             int index = bSearch.Search(phonebook.Contacts(), Field.Mobile, "90468543");
             int expectedIndex = ExpectedIndex(phonebook.Contacts(), Field.Mobile, "90468543");
             var passOrFail = PassOrFail(expectedIndex, index);
-            table.AddRow(1, "Mobile", "90468534", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
+            table.AddRow(1, "Mobile", "90468543", passOrFail.Item1, index, bSearch.Comparisons, passOrFail.Item2);
 
             // Searching for a number below the smallest
             index = bSearch.Search(phonebook.Contacts(), Field.Mobile, "00000000");
@@ -193,7 +192,7 @@ class Program
 
             int ExpectedIndex(Contact[] array, Field field, string target)
             {
-                return Array.FindIndex(array, contact => contact.GetField(field).Contains(target));
+                return Array.FindIndex(array, cont => cont.GetField(field).Contains(target));
             }
 
         }
