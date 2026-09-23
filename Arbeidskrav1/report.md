@@ -4,7 +4,7 @@
 |      |                             |
 |------|-----------------------------|
 | Name | Kristiane Olsen             |
-| Date | 18.09.2026                  |
+| Date | 23.09.2026                  |
 | Data | phonebook.csv, 200 contacts |
 ---
 ### Complexity reference:
@@ -37,14 +37,18 @@ This reflects the best-case complexity, if the target had been at index 0.
 
 ## 2. Sorting
 
-| # | Algorithm      | Input shape    | Comparisons | Swaps or moves |
-|---|----------------|----------------|-------------|----------------|
-| 1 | Insertion sort | As-supplied    | 9691        | 9494           |
-| 3 | Insertion sort | Already sorted | 199         | 0              |
-| 5 | Insertion sort | Reverse sorted | 17375       | 17190          |
-| 2 | Heap sort      | As-supplied    | 2458        | 1347           |
-| 4 | Heap sort      | Already sorted | 2485        | 1426           |
-| 6 | Heap sort      | Reverse sorted | 2248        | 1182           |
+| # | Algorithm      | Input shape       | Comparisons | Swaps or moves |
+|---|----------------|-------------------|-------------|----------------|
+| 1 | Insertion sort | As-supplied       | 9691        | 9494           |
+| 3 | Insertion sort | Already sorted    | 199         | 0              |
+| 5 | Insertion sort | Reverse sorted    | 17375       | 17190          |
+| 7 | Insertion sort | One-element array | 0           | 0              |
+| 7 | Insertion sort | Empty array       | 0           | 0              |
+| 2 | Heap sort      | As-supplied       | 2458        | 1347           |
+| 4 | Heap sort      | Already sorted    | 2485        | 1426           |
+| 6 | Heap sort      | Reverse sorted    | 2248        | 1182           |
+| 8 | Heap sort      | One-element array | 0           | 0              |
+| 8 | Heap sort      | Empty array       | 0           | 0              |
 ------------------------------------------------------------- 
 **Reflection**
 
@@ -53,9 +57,11 @@ With heap sort, the results are relatively similar regardless of the input shape
 close to the average case complexity, which reflects a consistent complexity. Insertion sort did less 
 work on an already-sorted array, reflecting the best-case complexity, but shows the worst-case when 
 operating on a reverse-sorted array. The results regarding the worst-case are a bit lower than the expected
-number of swaps and comparisons due to name duplicates. As for the average case, they results are about 
+number of swaps and comparisons due to name duplicates. As for the average case, the results are about 
 half of the worst case, which is expected. The results show that heap sort is preferred on 
 larger and unsorted arrays compared to insertion sort.
+
+Both sorting algorithms works on empty and one-element arrays. 
 
 ## 3. Searching sorted data
 | # | Sorted by  | Target                                | Expected | Result | Comparisons | Pass/fail |
@@ -67,8 +73,12 @@ larger and unsorted arrays compared to insertion sort.
 | 5 | Last name  | Zloten (absent target)                | -1       | -1     | 8           | pass      |
 | 6 | First name | Thea (present target)                 | 177      | 177    | 5           | pass      |
 | 7 | First name | Camilla (empty array)                 | -1       | -1     | 0           | pass      |
-| 8 | First name | Camilla (one element array)           | 0        | 0      | 1           | pass      |
+| 8 | First name | Camilla (one-element array)           | 0        | 0      | 1           | pass      |
+| 8 | Mobile     | 92213030 (unsorted array)             | 32       | -1     | 2           | fail      |
 --------------------------------------------------------------------------------
+**#4 test:** Contact[128] = Kristiansen (Before Kristoffersen in the sorted array)
+
+**#6 test:** Contact[176] = Stian (Before Thea in the sorted array)
 
 Linear search on the same targets, for comparison:
 
@@ -83,7 +93,7 @@ Linear search on the same targets, for comparison:
 
 The big-O notation reflects how the complexity grows with increasing n values. 
 The comparisons in this case are directly reflected in the complexity since it is 
-logarithmic. On average a search takes 7-8 comparisons, and results lower than this represents 
+the base-2 logarithm of n. On average a search takes 7-8 comparisons, and results lower than this represents 
 targets closer to the root (values in the middle of the array). For targets not in
 the array, they reflect the worst-case by comparing 7 or 8 times, depending on the
 depth of the branch it travels down. 
@@ -99,7 +109,7 @@ contact[index - 1] is smaller than the target, thus returning the first instance
 sorted array. I have chosen not to count these comparisons as a part of the search, as I want 
 that to reflect the complexity. 
 
-| Algorithm      | Comparison cost (average-case) |
+| Algorithm      | Time complexity (average-case) |
 |----------------|--------------------------------|
 | Linear search  | 200                            | 
 | Binary search  | 8                              |
@@ -107,7 +117,7 @@ that to reflect the complexity.
 | Heap sort      | 1528                           | 
 -------------------------
 Binary search uses 192 fewer comparisons than linear search, but we need to take
-into account the comparison cost used for sorting. Calculating how many searches to 
+into account the complexity used for sorting. Calculating how many searches to 
 perform before sorting pays for itself: 
 
 1528/192 = 7,95 → 8 times using heap sort
